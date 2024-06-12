@@ -75,6 +75,7 @@ namespace myrender {
 		VkExtent2D swapChainExtent;
 		std::vector<VkImageView> swapChainImageViews;
 
+		VkRenderPass renderPass;
 		VkPipelineLayout pipelineLayout;
 
 		void initWindow();
@@ -89,6 +90,7 @@ namespace myrender {
 		void createLogicalDevice();
 		void createSwapChain();
 		void createImageViews();
+		void createRenderPass();
 		void createGraphicsPipeline();
 		VkShaderModule createShaderModule(const std::vector<char>& code);
 		VkSurfaceFormatKHR chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats);
