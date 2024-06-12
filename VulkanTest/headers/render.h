@@ -77,6 +77,7 @@ namespace myrender {
 
 		VkRenderPass renderPass;
 		VkPipelineLayout pipelineLayout;
+		VkPipeline graphicsPipeline;
 
 		void initWindow();
 		void initVulkan();
