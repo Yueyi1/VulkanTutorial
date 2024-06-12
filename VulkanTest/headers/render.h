@@ -3,6 +3,7 @@
 #include <GLFW/glfw3.h>
 
 #include <iostream>
+#include <fstream>
 #include <stdexcept>
 #include <algorithm>
 #include <vector>
@@ -86,6 +87,8 @@ namespace myrender {
 		void createLogicalDevice();
 		void createSwapChain();
 		void createImageViews();
+		void createGraphicsPipeline();
+		VkShaderModule createShaderModule(const std::vector<char>& code);
 		VkSurfaceFormatKHR chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats);
 		VkPresentModeKHR chooseSwapPresentMode(const std::vector<VkPresentModeKHR>& availablePresentModes);
 		VkExtent2D chooseSwapExtent(const VkSurfaceCapabilitiesKHR& capabilities);
@@ -95,6 +98,7 @@ namespace myrender {
 		QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device);
 		std::vector<const char*> getRequiredExtensions();
 		bool checkValidationLayerSupport();
+		static std::vector<char> readFile(const std::string& filename);
 		static VKAPI_ATTR VkBool32 VKAPI_CALL debugCallback(VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity, VkDebugUtilsMessageTypeFlagsEXT messageType, const VkDebugUtilsMessengerCallbackDataEXT* pCallbackData, void* pUserData);
 	};
 }
