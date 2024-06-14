@@ -1,4 +1,6 @@
-#pragma once
+#ifndef RENDER_H
+#define RENDER_H
+
 #define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
 
@@ -88,6 +90,7 @@ namespace myrender {
 		std::vector<VkSemaphore> renderFinishedSemaphores;
 		std::vector<VkFence> inFlightFences;
 
+		bool framebufferResized = false;
 		uint32_t currentFrame = 0;
 
 		void initWindow();
@@ -102,6 +105,8 @@ namespace myrender {
 		void pickPhysicalDevice();
 		void createLogicalDevice();
 		void createSwapChain();
+		void cleanupSwapChain();
+		void recreateSwapChain();
 		void createImageViews();
 		void createRenderPass();
 		void createGraphicsPipeline();
@@ -120,7 +125,10 @@ namespace myrender {
 		QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device);
 		std::vector<const char*> getRequiredExtensions();
 		bool checkValidationLayerSupport();
+		static void framebufferResizeCallback(GLFWwindow* window, int width, int height);
 		static std::vector<char> readFile(const std::string& filename);
 		static VKAPI_ATTR VkBool32 VKAPI_CALL debugCallback(VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity, VkDebugUtilsMessageTypeFlagsEXT messageType, const VkDebugUtilsMessengerCallbackDataEXT* pCallbackData, void* pUserData);
 	};
 }
+
+#endif
